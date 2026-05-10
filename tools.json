@@ -1,0 +1,88 @@
+[
+  {
+    "name": "get_user_profile",
+    "description": "Retrieves a borrower profile, loan history, and risk information for a given user ID from data/users.json.",
+    "inputs_required": [
+      {
+        "name": "user_id",
+        "type": "string",
+        "description": "Unique borrower ID, for example U001."
+      }
+    ]
+  },
+  {
+    "name": "check_loan_eligibility",
+    "description": "Checks loan eligibility using income, expenses, credit score, missed payments, and existing loan liabilities.",
+    "inputs_required": [
+      {
+        "name": "user_profile",
+        "type": "object",
+        "description": "Full borrower profile object containing monthly_income, monthly_expenses, credit_score, missed_payments_last_12m, and existing_loans."
+      }
+    ]
+  },
+  {
+    "name": "calculate_emi",
+    "description": "Calculates the monthly EMI for a loan using principal, annual interest rate, and tenure in months.",
+    "inputs_required": [
+      {
+        "name": "principal",
+        "type": "number",
+        "description": "Loan principal amount."
+      },
+      {
+        "name": "rate",
+        "type": "number",
+        "description": "Annual loan interest rate as a percentage, for example 11.5."
+      },
+      {
+        "name": "tenure_months",
+        "type": "integer",
+        "description": "Loan repayment tenure in months."
+      }
+    ]
+  },
+  {
+    "name": "calculate_dti",
+    "description": "Calculates debt-to-income ratio using existing loan EMIs and monthly income, then returns a risk category.",
+    "inputs_required": [
+      {
+        "name": "user_profile",
+        "type": "object",
+        "description": "Full borrower profile object containing monthly_income and existing_loans with EMI values."
+      }
+    ]
+  },
+  {
+    "name": "simulate_repayment_plan",
+    "description": "Simulates a repayment plan and returns EMI, total payable amount, and total interest paid.",
+    "inputs_required": [
+      {
+        "name": "amount",
+        "type": "number",
+        "description": "Loan amount or repayment principal to simulate."
+      },
+      {
+        "name": "months",
+        "type": "integer",
+        "description": "Repayment duration in months."
+      },
+      {
+        "name": "interest_rate",
+        "type": "number",
+        "description": "Annual interest rate as a percentage, for example 11.5."
+      }
+    ]
+  },
+  {
+    "name": "assess_borrower_risk",
+    "description": "Assesses borrower risk using missed payments, DTI ratio, credit score, and savings buffer.",
+    "inputs_required": [
+      {
+        "name": "user_profile",
+        "type": "object",
+        "description": "Full borrower profile object containing monthly income, expenses, credit score, missed payments, savings, and existing loans."
+      }
+    ]
+  }
+]
